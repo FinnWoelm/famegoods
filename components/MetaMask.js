@@ -10,7 +10,7 @@ export default function MetaMask() {
 
     const defaultOptions = {
         loop: true,
-        autoplay: true,
+        autoplay: false,
         animationData: animationData,
         rendererSettings: {
             preserveAspectRatio: "xMidYMid slice"
