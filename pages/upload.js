@@ -15,6 +15,7 @@ import Lottie from 'react-lottie';
 import { useOvermind } from "../stores/Overmind";
 import MetaMask from "../components/MetaMask"
 import blueConfirmation from '../src/lotties/blueConfirmation';
+import CloseOut from '../components/closeOut';
 
 
 export default function Other() {
@@ -146,13 +147,15 @@ export default function Other() {
             </Alert>
           )}
           {state.gif && <img src={state.gif} width="200" height="200" />}
-          <form>
-            <div className="w-full h-full">
-              <div className="my-2">
-                <h1 className="ml-2 my-4 font-extrabold text-2xl text-gray-900 text-opacity-100 pb-2">
-                  <span alt="camera-emoji">📷</span> Upload a Video
+
+          <div className="w-full h-full">
+            <CloseOut></CloseOut>
+            <div className="my-2">
+              <h1 className="ml-2 my-4 font-extrabold text-2xl text-gray-900 text-opacity-100 pb-2">
+                <span alt="camera-emoji">📷</span> Upload a Video
                 </h1>
 
+              <form>
                 <div className="mt-6">
                   <label className="text-gray-800 uppercase tracking-wide font-bold">Video Title</label>
                   <input
@@ -178,7 +181,7 @@ export default function Other() {
                   <div className="flex-col items-center">
                     <button
                       onClick={handleClick}
-                      className="mt-6 bg-gray-100 hover:bg-gray text-md text-black font-semibold w-full px-2 py-2 rounded-md border-b-8 border-gray-800 shadow-lg"
+                      className="mt-4 bg-gray-100 hover:bg-gray text-md text-black font-semibold w-full p-2 rounded-md border-b-8 border-gray-800 shadow-lg"
                     >
                       {state.fileUploaded && (
                         <div className="flex flex-row items-center justify-between m-auto">
@@ -234,9 +237,9 @@ export default function Other() {
                 </button>
                   </div>
                 </div>
-              </div>
+              </form>
             </div>
-          </form>
+          </div>
         </figure>
       </div>
       <style jsx>{`
