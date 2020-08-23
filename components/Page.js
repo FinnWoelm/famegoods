@@ -49,11 +49,12 @@ function Page() {
         <title>DFAME</title>
       // TODO: Add tab icon
       </Head>
-
-      <div className="flex flex-col">
-        <Header>
-        </Header>
-        <div className="snap snap-y snap-mandatory">
+      <div>
+        <div className="fixed flex flex-col">
+          <Header>
+          </Header>
+        </div>
+        <div className="absolute snap snap-y snap-mandatory">
           {videos.map((videoDetail, index) => {
             return (
               <WallCard

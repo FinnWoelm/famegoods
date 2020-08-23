@@ -33,39 +33,43 @@ export default function WallCard({ tags, title, video, gif, file }) {
   if (!videoObj) return null;
 
   return (
-    <div className="relative ml-10 mr-10 justify-center mt-10 mb-20 pt-2 snap-center always-stop z-0 overflow-x-hidden">
-      <Link href="/post/[slug]" as={"/post/" + file.id}>
-        <div className="mb-8 rounded-md shadow-lg w-full justify-center cursor-pointer">
-          <div className="relative align-center object-contain bg-black bg-opacity-75 rounded-lg">
-            <img
-              className="object-center rounded-lg w-full object-contain opacity-75"
-              src={gif}
-            />
-          </div>
-          <div className="flex absolute top-0 p-6">
-            <ProfileHeader />
-            <div className="top-0 right-0">
-              <Icon icon={ellipsisVSolid} color="white" className="top-0 right-0 h-8 w-8 ml-20" />
-            </div>
-          </div>
-          <div className="absolute bottom-0 mx-6 mb-24 w-full">
-            <Icon className="w-10 h-10" icon={lockSolid} color="white" />
-            <div className="break-words font-extrabold text-4xl mb-4 p-2 text-white">
-              {videoObj.title || "Loading..."}
-            </div>
+    <div>
+      <main>
+        <div className="absolute h-screen static ml-10 mr-10 justify-center mt-10 mb-20 pt-2 snap-center always-stop z-0 overflow-x-hidden">
+          <Link href="/post/[slug]" as={"/post/" + file.id}>
+            <div className="mb-8 rounded-md shadow-lg w-full  justify-center cursor-pointer">
+              <div className="relative align-center object-contain bg-black bg-opacity-75 rounded-lg">
+                <img
+                  className="object-center rounded-lg w-full object-contain opacity-75"
+                  src={gif}
+                />
+              </div>
+              <div className="flex absolute top-0 p-6">
+                <ProfileHeader />
+                <div className="top-0 right-0">
+                  <Icon icon={ellipsisVSolid} color="white" className="top-0 right-0 h-8 w-8 ml-20" />
+                </div>
+              </div>
+              <div className="absolute bottom-0 mx-6 mb-24 w-full">
+                <Icon className="w-10 h-10" icon={lockSolid} color="white" />
+                <div className="break-words font-extrabold text-4xl mb-4 p-2 text-white">
+                  {videoObj.title || "Loading..."}
+                </div>
 
-            <div className="w-full">
-              <button className="flex bg-white hover:bg-gray-300 text-black font-medium tracking-wide py-2 px-4 w-9/12 rounded-lg mr-2 items-center button-gradient">
-                <Icon className="m-1" icon={playSolid} color="black" />
-                <span>
-                  Own {videoObj.tokens} {videoObj.tokenName} to Unlock
+                <div className="w-full">
+                  <button className="flex bg-white hover:bg-gray-300 text-black font-medium tracking-wide py-2 px-4 w-9/12 rounded-lg mr-2 items-center button-gradient">
+                    <Icon className="m-1" icon={playSolid} color="black" />
+                    <span>
+                      Own {videoObj.tokens} {videoObj.tokenName} to Unlock
                 </span>
-              </button>
+                  </button>
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
-      </Link>
-    </div >
+          </Link>
+        </div >
+      </main>
+    </div>
 
   );
 }
