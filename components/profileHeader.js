@@ -1,24 +1,58 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { Icon, InlineIcon } from "@iconify/react";
+import { getProfile, setProfile } from "../utils/UserData";
+import useAddress from "../utils/Address";
 
 export default function ProfileHeader() {
+
+  const [box, setBox] = useState();
+  const [address, setAddress] = useState("");
+  const [userProfile, setUserProfile] = useState({
+    name: "",
+    description: "",
+    emoji: "",
+    image: [],
+    location: "",
+    website: "",
+  });
+
+  let userAddress = useAddress();
+  if (address !== userAddress) {
+    setAddress(userAddress);
+  }
+
+  const get3BoxProfile = async (addr) => {
+    const userProfile = await getProfile(addr);
+    setUserProfile({
+      name: userProfile.name,
+      description: userProfile.description,
+      emoji: userProfile.emoji,
+      image: userProfile.image
+        ? Object.values(userProfile.image[0].contentUrl)
+        : [],
+      location: userProfile.location,
+      website: userProfile.website,
+    });
+  };
+
+  useEffect(() => {
+    if (!address) return;
+    get3BoxProfile(address);
+  }, [address]);
+
   return (
     <div className="flex flex-auto">
       <img
         className="h-12 w-12 object-cover rounded-full border-solid border-white border-2"
-        src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=668&q=80"
-        alt="Woman Profile Picture"
+        src={`https://ipfs.infura.io/ipfs/${userProfile.image[0]}`}
+        alt="Your Profile Picture"
       />
       <div className="flex-auto">
         <p className="ml-4 text-extrabold tracking-wide text-white text-lg align-text-top">
-          Jennifer Tran
-        </p>
-        <p className="ml-4 text-extrabold tracking-wide text-white text-sm align-text-top">
-          3 Hours Ago
+          {userProfile.name}
         </p>
       </div>
     </div>
   );
 }
-
