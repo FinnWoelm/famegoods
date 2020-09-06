@@ -6,14 +6,13 @@ import SortBy from "./SortBy";
 
 import Fab from "@material-ui/core/Fab";
 import AddIcon from "@material-ui/icons/Add";
-import { getVideos } from "../utils/CTS3.js";
 
 import VideoData from "./videos.json";
-import Others from "../pages/upload";
-import WallCard from "./WallCard";
 import Header from "./header";
 
 import { useOvermind } from "../stores/Overmind";
+
+const Videos = dynamic(() => import("./Videos"), { ssr: false });
 
 function mf(i) {
   const file = "b";
@@ -28,18 +27,9 @@ const init = {
 function Page() {
   const [state, setState] = useState(init);
   const [sampleData, setSampleData] = useState([]);
-  const [videos, setVideos] = useState([]);
 
   const { state: ostate, actions } = useOvermind();
 
-  useEffect(() => {
-    try {
-      getVideos(setVideos);
-      // console.log(videos);
-    } catch (e) {
-      console.log(e);
-    }
-  }, []);
   useEffect(() => {
     if (ostate.user.balances.length === 0) actions.refreshUser();
   }, [ostate.user.balances, ostate.user]);
@@ -60,18 +50,7 @@ function Page() {
       <div className="flex flex-col">
         <Header></Header>
         <div className="snap snap-y snap-mandatory">
-          {videos.map((videoDetail, index) => {
-            return (
-              <WallCard
-                key={index}
-                title={videoDetail.title}
-                gif={videoDetail.gif}
-                file={videoDetail}
-                // tags={videoDetail.tags}
-                // video={videoDetail.video}
-              />
-            );
-          })}
+          <Videos />
         </div>
       </div>
 
