@@ -1,4 +1,7 @@
 [build]
   command = "yarn run build && yarn run export"
   functions = "out_functions"
-  publish   = "out"
+  publish   = "out_publish"
+
+[dev]
+  framework = "#static"

@@ -3,7 +3,7 @@ const withBundleAnalyzer = require("@next/bundle-analyzer")({
 });
 
 module.exports = withBundleAnalyzer({
-  // target: 'serverless',
+  target: 'serverless',
   devIndicators: {
     autoPrerender: false,
   },
